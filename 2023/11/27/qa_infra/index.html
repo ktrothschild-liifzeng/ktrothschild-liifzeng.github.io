@@ -20,17 +20,17 @@
     var CONFIG = {"hostname":"ktrothschild-liifzeng.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="需要服务哪些对象 按端分类 客户端 android ios electron qt   服务端 openApi webApi 中间件(存储&#x2F; cdn&#x2F; redis) 全链路   web端 PC H5 小程序       传统做法: 业务黑盒测试 主要矛盾之一是怎么快速同步需求交互业务逻辑, 快速识别测试点并设计case 主要矛盾之二是怎么才能点的快，回归快，覆盖全 UI自动化测">
+  <meta name="description" content="这是一篇私密文档，需要输入密码查看哦。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="质量工具体系建设随笔">
 <meta property="og:url" content="https://ktrothschild-liifzeng.github.io/2023/11/27/qa_infra/index.html">
 <meta property="og:site_name" content="LiifZeng">
-<meta property="og:description" content="需要服务哪些对象 按端分类 客户端 android ios electron qt   服务端 openApi webApi 中间件(存储&#x2F; cdn&#x2F; redis) 全链路   web端 PC H5 小程序       传统做法: 业务黑盒测试 主要矛盾之一是怎么快速同步需求交互业务逻辑, 快速识别测试点并设计case 主要矛盾之二是怎么才能点的快，回归快，覆盖全 UI自动化测">
+<meta property="og:description" content="这是一篇私密文档，需要输入密码查看哦。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-11-27T07:58:43.000Z">
-<meta property="article:modified_time" content="2023-11-29T12:20:58.999Z">
+<meta property="article:modified_time" content="2023-11-29T12:22:55.979Z">
 <meta property="article:author" content="Liifzeng">
-<meta property="article:tag" content="self, qa_infra">
+<meta property="article:tag" content="self">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://ktrothschild-liifzeng.github.io/2023/11/27/qa_infra/">
@@ -181,7 +181,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-11-29 20:20:58" itemprop="dateModified" datetime="2023-11-29T20:20:58+08:00">2023-11-29</time>
+                <time title="Modified: 2023-11-29 20:22:55" itemprop="dateModified" datetime="2023-11-29T20:22:55+08:00">2023-11-29</time>
               </span>
 
           
@@ -202,164 +202,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="需要服务哪些对象"><a href="#需要服务哪些对象" class="headerlink" title="需要服务哪些对象"></a>需要服务哪些对象</h3><ul>
-<li><h4 id="按端分类"><a href="#按端分类" class="headerlink" title="按端分类"></a>按端分类</h4><ul>
-<li>客户端<ul>
-<li>android</li>
-<li>ios</li>
-<li>electron</li>
-<li>qt</li>
-</ul>
-</li>
-<li>服务端<ul>
-<li>openApi</li>
-<li>webApi</li>
-<li>中间件(存储&#x2F; cdn&#x2F; redis)</li>
-<li>全链路</li>
-</ul>
-</li>
-<li>web端<ul>
-<li>PC</li>
-<li>H5</li>
-<li>小程序</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<h4 id="传统做法"><a href="#传统做法" class="headerlink" title="传统做法:"></a>传统做法:</h4><ul>
-<li>业务黑盒测试</li>
-<li>主要矛盾之一是怎么快速同步需求交互业务逻辑, 快速识别测试点并设计case</li>
-<li>主要矛盾之二是怎么才能点的快，回归快，覆盖全</li>
-<li>UI自动化测试</li>
-<li>主要矛盾之一是机器在界面频繁变化的场景下怎么稳定的点</li>
-<li>主要矛盾之二是如何增强界面元素的寻找能力</li>
-<li>稳定性测试<ul>
-<li>主要矛盾之一是各种机型如何持久高效地点</li>
-<li>主要矛盾之二是crash如何识别去重和聚合</li>
-</ul>
-</li>
-<li>性能测试<ul>
-<li>主要矛盾之一是如何构造基线benchmark(受到机型&#x2F; 网络&#x2F; 内容影响)</li>
-<li>主要矛盾之二是性能bad case如何辅助分析(systrace，火焰图不够)</li>
-</ul>
-</li>
-<li>接口测试<ul>
-<li>主要矛盾之一是接口文档可能滞后,有哪些接口需要测试自己抓，可能不全</li>
-<li>主要矛盾之二是接口参数太多，编写耗时长</li>
-</ul>
-</li>
-<li>接口压测<ul>
-<li>主要矛盾之一是接口场景构造</li>
-<li>主要矛盾之二是数据脱敏,环境隔离</li>
-</ul>
-</li>
-<li>全链路压测<ul>
-<li>主要矛盾之一是流量回放时数据脱敏</li>
-<li>主要矛盾之二是影子表配套的设计</li>
-</ul>
-</li>
-<li>混沌测试</li>
-<li>主要矛盾：混沌的控制和系统配套的监控</li>
-</ul>
-<h4 id="部分实践简介"><a href="#部分实践简介" class="headerlink" title="部分实践简介:"></a>部分实践简介:</h4><ul>
-<li>通过爬取需求&#x2F;bug元素数据，设计状态机服务来加速流转需求&#x2F;缺陷</li>
-<li>实现点一遍就同时生成UI的Action和net flow的接口测试自动化用例的工具链</li>
-<li>分布式 web自动遍历, 在容器中灌浏览器，自动遍历web页面的控件，劫持接口报错，通过控件特征识别前端报错</li>
-<li>从swagger生成接口列表，得到接口总数，在页面遍历时自动录制接口，识别动态参数，自动生成接口case</li>
-<li>利用Android ContentProvider漏洞重打包注入测试桩获取应用界面布局</li>
-<li>分布式 web自动遍历, 在容器中灌浏览器，自动遍历web页面的控件，识别接口报错</li>
-<li>混沌chaos系统架构设计</li>
-<li>名字服务自动探测(SLB 验证&#x2F; 心跳验证&#x2F; 故障熔断&#x2F; 限流配置&#x2F; 恢复机制)</li>
-</ul>
-</blockquote>
-<hr>
-<ul>
-<li><h4 id="按服务分层-以电商系统为例"><a href="#按服务分层-以电商系统为例" class="headerlink" title="按服务分层(以电商系统为例)"></a>按服务分层(以电商系统为例)</h4><ul>
-<li>应用层<ul>
-<li>各种客户端</li>
-</ul>
-</li>
-<li>接入层<ul>
-<li>Api接口测试(http接口测试)</li>
-<li>登录&#x2F; 注册&#x2F; 验证码&#x2F; 邮件 服务</li>
-</ul>
-</li>
-<li>业务层<ul>
-<li>用户服务<ul>
-<li>注册登录</li>
-<li>属性管理</li>
-</ul>
-</li>
-<li>商品服务<ul>
-<li>库存查询</li>
-<li>商品查询</li>
-</ul>
-</li>
-<li>商家服务<ul>
-<li>货架管理</li>
-<li>活动管理</li>
-</ul>
-</li>
-<li>店铺服务<ul>
-<li>推广服务</li>
-</ul>
-</li>
-<li>搜索服务<ul>
-<li>商品搜索</li>
-<li>店铺搜索</li>
-<li>商家搜索</li>
-</ul>
-</li>
-<li>购物车</li>
-<li>订单服务</li>
-<li>支付服务</li>
-<li>物流服务</li>
-<li>评论服务</li>
-</ul>
-</li>
-<li>数据流<ul>
-<li>商品库存同步</li>
-<li>商品货架同步</li>
-<li>店铺同步</li>
-<li>用户事件</li>
-<li>订单事件</li>
-<li>支付事件</li>
-<li>结算事件</li>
-<li>评论事件</li>
-<li>公共事件</li>
-</ul>
-</li>
-<li>存储层<ul>
-<li>ES</li>
-<li>ETCD</li>
-<li>Mysql</li>
-<li>MongoDB</li>
-<li>Redis<blockquote>
-<h4 id="如何测试"><a href="#如何测试" class="headerlink" title="如何测试:"></a>如何测试:</h4></blockquote>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<ul>
-<li>电商是典型的分布式微服务架构一定需要分层测试</li>
-<li>只有接口测试是不够的，内部的中间件&#x2F; 存储都需要做组件测试</li>
-<li>如何保障有效灾备(设计一套体系验证服务限流&#x2F;降级&#x2F;熔断&#x2F;异地灾备的有效性)</li>
-</ul>
-</blockquote>
-<h3 id="工具和平台的关系"><a href="#工具和平台的关系" class="headerlink" title="工具和平台的关系"></a>工具和平台的关系</h3><blockquote>
-<ul>
-<li>工具是组件服务，平台是入口和聚合展示的载体</li>
-<li>平台还是流程自动流转的载体</li>
-<li>工具一定要面向error编程，考虑各阶段可能的异常</li>
-<li>工具可以接入到平台的标准是工具是否有丰富的埋点上报来支撑运营优化</li>
-</ul>
-</blockquote>
-
+        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="ea3bc15fe7bce86e30549708ab761b2af6fb96a3d575dce39ca68c9c2c1fc733">22a2c8a4969441c85030bfd86b892adc5cdac822b433107be70507ed38b058a0604672dfd33af0f7710d1ab1d5ea4504dae58d5c218939877f7e2302df051302abd867fcec800bb9628f26d339492b62421b1d46d145689a8f18f7d2e36abd938ac8f4128a8e1d6da3ea49a80083abcd8b164632419b5731f9a8c320aefda52fd07f7fe355403473a5c018b638befd2b843b15b75989c5063b3fd31b7bfd564223f03df97b742f588ed3e33dff890ce21469b459da01974f191ab6b6aea6c849f10b81a4e4d30b19b2e51f3cf362c0b8bdf5bc036243ad8619a5bbe7dc30bba17afb7eb000428750637a179623c5a279743a47d722dc5cfd3304d39a55b8ad99dbeb924dbaf455befeff5db3d7e4c6b09c6dff43898136ec472b76be73583a59fb147ad819e81fe6b167198bf170c98c517e3ab7b4ef55e1d0694aa2c5c09cc50fd7d84053ffdc9f96c60d384b38ccf946eb7942738c68804de52d278caa1d512c64c1def57a9644cd8c671f255d1ef718f276722f1b01c19bb804180684be2115c96cae2a028c5f3e292a546526d67e0c2c0c674b247d460acd5865671e215d80e13ba47fe08a3ed168cd5146ee2858db26d04fc2a59b8fc7fa9b4c18f25e6d14fb5841ca1ee9566cc56e0f127a1835b23a5fc26a5fdc151d4c049a5371125459e8822ba93258c8cb5491580305b6883bd97c793da75f11d178613b4c3b786a0a29ae09b5b093e31829529049b8d0377c3b4c6adc7c2942e51d3e186c2cefbccdc6240332df86606c0b537a048241761878daa112cb03cf853599abcb53fe9389f36bc8a08df7c469b456e998af20b5fa7c50bd911bfb7a092a45991bd13b40b84ff55ed99b748f100dbaaee1cabeaa1c5558d5e2e2b68672b6179855ce20eb0170e8d88d7ecdc9e9322ed6a9a7036c37e49bff572a69ad13f9ae5975e61895f684e90f8bc972877d7913ec2d14552d5022d7560ed930670d6aa1192550ab645482b9d4b17afdf2c9b51cccb0d4096da8fbc73a29aa8c66a8fc39a1e6eb228400826b58e5ce7d85397ef88dc72c5e75e7cdb57471e3b933b043d5959b09b5d3835eacfc9abb62119bb7b7d13890267f43e27ab8cd0455742dcbd5f8163e59228adf88e86d3b912ab9637c170b8a35c3bb3ad9ce602438f59a6027cc47c0128c9d0e83935b9251f0de7ccbe7384df19ad8f43da038b22b3e9e62e72e0ecc0ae7bd3e636263595119ec1be5a69255077a7dc82a5d0b086bef9ffcc71d6308f2d9727bce8675ae9abf2ca62fe21e36fb884f5b4ac48003af1a95e2c183eaa49464efe26f0cc2486027d36fcc45069eb0309233176b8bbca78b40aea1ecf1a4c30e2b6be9fd977f00fb781da34a01593db8d23e697e8b199cd16b6799d9180e14769696578495add17d31f59f567281d5455ded1ca22791b74e3e893a23bf4e8d1e8ab5686319a2c908f805a1458775d8efae4a7bcba9ff5c5e8280e41fe6959b2c653dedf120b5ccbd701dfbf4dca1bad00df93bbcbf49c8e4a54b8434a136cda6660aa7885b3ecd62209377a96076077b9939d426b21839370e92a31eebf28bf28292b89252edeee8a226725f03ae4aaeac793b0102af44476b693c5affc05667d2178f7d7e8fdbb507bd693554e91bc4ef08f6cd610e07c3da080c2ca8a590022ff19a3c94e76d18f87279d2e6c8d9bb2a71ea259c0987d05cce862be8a00fe3f3e8ad7084779c6ea4ba6bc34dd7a46f0dc352b0b2bc33704ae21cef48e59788478befca52fdce43d30128060cce6507497b5db3b23626fe004909347522508d7f3a51973240d5e91b91bb2edcfcd9bd9a5d57fb586a51b36087ef71758543bc87dc33872658daffedaecb39526dffc65b43618d6c5714c73ccb27e97b89a03a0761e9d07a2bdcaa6a824e36b1d6a3f14797ff06abcf980716a9bd9df3c580de1b08ac38e3a6c26aa0fb982b0e0ca3dcfaa658bc6cd61f848a4d2b3fd59bdd1612d375782ea6c096d5b7585b409d233b2c5213e95a59e22b7396487f8404fb88010e10cd7350a9c1df2cd7af2d6918154781996686dc8cffa50acaa754a2dab19ce8b3823156a24e1fca3bd5ca8d9907fa9de9d4a7da89ef62676522a1b8bcf1b9bb94e6d96ecd83a07b2e3368842fa1291d5b9ce4d4e44a9989b96a2203e0ddc654882a9659659ee5550549939fbf4d7e911c7f0ee3441413bc1ec728eb3ed0519d11d6201017161451e2e4577cc5874e2a6f29ef71d1d41ef5f7c067786e415d2850e18765479977b8364a96191139bf3b6e3304630df143e5b4cc92ea56d6983aa973ee445849218d93100c5336fa97d909361df4ec169fc673d7b41b0f65f8d89b7cceafda73d6c31fcb256261d0b4e9f84158fa6ea77b18869e211da128025ebd8d2a26a440c4f7a0cc7e0cc09a940086d9e4a8e55dea5ad0d5152547d0b868881f0dd9a9d1ad541f5b410db93b5906a629ce3abda56920e5d8ecf4bf3abea9ae1d83637518c7242bdb71ebd0da9533dccad9a4cc804e3b30931fed7a1ee755940dcf27a3d5df64d1d80e2870ef29f73991ea4cf2d658bbfaffaceefa4198597151dd8c94ab0da1fd5f1edc3221bcefad55f7c0256c01772d15fa55695dcb2f242f8686c63d835c43669aae4b3dad3ec6a66f28011088227e61143a23c641f6804f7f4a9611ac164e0e8f9c3741873ac61f904185fa442fc74f2ddc9684885a6480546cacb19670b19cb3d424670d9a31996333c7649a3a0fcdd6373fa0712b6653fef20609e4b89f05046562739ae1b6f131197d0654d163042baf0acdafcc641059ae07a67beac2d2eaaca289024899bfa0e20239971e8814b298c867fa3acf3f85ec7e9c0391eda7c2a7a9508c4e8ddcbff64984211ee17d1df87a32281d6b4312f7ad63ee8c201f80108ccae527bbccb2618f87b97784674f195643312229b0fa3c52e6b50489b3cdc1251a4e7022d1450b3588fe9e8802a8cd88764e9db1aece422a9342dadad87a1e0eefb3c09d5a0d3a44eed2d50e3a629667464207008afc89f48f0fd1b8e0a2769556e28ec07a6cbdadc372188675c31616eebc23548d479d211cc79f82e070a8febf41799c9fd55d7ee187b8b5fdf4ce9174eeb13dd86833c84b38a61ed612565afb54dcb325eaae9b1172fc538298e6535b795944b38d16b8b277c7396f1a715e72544e5fc24c659f2ec7c94d570348e97b7d56ecb05a07daf7daf53c159dc688ae288e5d94d8b35f413547537142656b00736121524af569e47f84580798bef4a9f78813dcc22434da2c3865fb8acb6dbde104772cca84a3c19569d94a6a232536795412d0f251e80e27146648aa60f482f5d305af13b46129128abda4aeefaac5ac7ea59c50ec68df33b1ae5c90fb2f6c92484714a8943f6f86987dd0e78a76bd15f6554902bab55f73c49676663fd473f04ee0844cddf4702923c85b5cc9854f583b3581f0f6236859d76167e7b515580101ec765bee6d75611222277424c1fdff92039ac931a369775ba98e0ced7c747f453f9f4b5a480f63d3edfee712817283ae937f84e101a3db872f8a7e5a18ced722387a3ececaea4b732d7b31405289eff7f5e26b96cc0e69b532224d4b72038b07f6475841ad47d13a1712bc9fc86f3e85cae2b737cab553eaf53ff95c05bfdb1afbf53c6f7e3dabe549466b54db2bb54b73216c4411ffb9f954a5218882382821db4a8c68ff216f480eec90df48ab02301327768f5c16130f2eaa64af21294777efaa287b590f87233e02def800e22405021801a200b9f5c4c372e57f5ede358d122a5f8ba98e755eb0a07f94067d4f0cc080a6d1ca05304f19ea84acc24b5697f895d18a2e0d1daccacd6b960bd0a6e2a753ecbef7fdcfd6b712361e7c84847c46e88a319bfabbacfdda247c4f95c50c6e255937427afa00a05db0b3950b6f0d742897951967d4684320849d41a86a315ad11f910f71cb80e176bcbcb77166a935edb0a14d507fb4b4053925ff717666b5e9e48f7977e63676397cdfbdc3ff84bd935c6cd1c313b2c7f8e41773cf11b04857dd873c54995d32187c08e2876fe74424e09450ab0628af41c67cc4c05733757c40ba7ba73f5a757b6514330e193cd34d2254008d3849d81552a7249948c10df46083533b4cc6e52747f4d7f41354b0cf2bfe9e838cfacd20c2ac70a949191d69d76f4a78ad7a88c407e0759128d0995587a25964ee6630a94170fd7e083eda8737251df4b80d11c33a52392d2c135d0ded67217cdaf4f7f43ed393372be74856276360068b06a04260816cc62ec52e14191800818a1798406a2ecab3858957807c06bc4111545a5b8672d8184c89e853a57b1db733b71becb70a75fc1858a3d0d87bbc7da485f63169b10c2dcc7ec7df23f00bd6355964b3ec6fea0067afcac9b595519de836e1c4367819dc10c6cf118f131325ce74320296da8634026dd719cba2f692220e447a29d0bad6c59ae7dffa72002c866f4eb7fa4c7e21fceab8784c0845ba198227b721fa4962bd3be940ff18a871c002f2d01276750f8e85e77b3968e7b5040955ae9bdfecc4ab41055966295fc0a118b9eaf0a4a9a130e7c46ffdb2692df4ac301d2db1e5a76a79019b6a830fc33bf5b0a49519a4915a2a14a3e4ffd9bdac329785afed087987171236a7b2ca3da104c98570fcf1e03b1f22095016d30479ee3e0747b25db89bf0d798973b9a0f8e6e44cdddf26fda5a33749a4e35ad63ae5da15a81feb07f80dc4bf31510998bb09f0c1524669994e60da723ef764d3a30a4e0a4ec1cc801665d466b1f4df55aac4e8ab6dd5989b0c9347153b45ffe76dc8c74033979efd61c9ce92f435addb52417d41cdcc85a1bda093bcbed62c047b51d49337e95487d3dae169f8066652c7a942cfc5fcdee5d5629c726ae8a406b60cc54b66588ef5d85515591bf18600eba8343b3195b7a5013c67e9d1404bafd420ccaab963f3380ea1780bfb3786e017a2d1ed65e227e3c7baecb0e1847edcf3134e40f6b0982fd5f7a897e7be16a66cd0fc8af38c5363eb5d8378299fe4cf1cd7ca3bdc9c51410e7ab9a1888cbed2ae8ca9fec69e3f8fcb655de23f5eb72c0c27a972c380771b3aca6d5faf7d35cc32826dfbdac011ac5ca2cb3f4d6d97838d924c8477659975adbfb1d813fe69dab904b197e4390ada06f92211395cf58738ecc3c34eddf6853652759028ac98a022f12d2fb9f331e6f0e4b01c76f7112d504bd14ba1cfa32114ae69fa8e42ca6abc8fbdac73ce5c5317cadf42b12f35298bd355126123feb9010e9427d77e8fceb308a8cf329207b6f0895ce52c8b875cd3cbf1d17ceaf5dd3c05730a1047972d3d0e64b4eae447a083a99654e0b1d60b3ccb625a85a8aab3198c06a6622dc49e3e0c1593bc76d15133ee0890a2d8ae3371173fa85db7192115bb5636eb6d41eaf293b8ada932e6d28babe195f4075f26c9ae094c2bab69938960a898ed9f9793d2392e95a338a955b1ec866c79f9ef838ddbf227fa05c7aaa9ba6411c8dfab751b99360e058e5820c0514603510013cb6dbd24f2d751f52508a261b05dc247007d89298a65637dc23ef85eac4c58dda4455cc043247210cae265f464fc5abf397e7230d7d4ad9ae656599bb2cf52768e56a021f5a01ac0f7e2478229ced4bd54e8eee2dbcbd9871ef0d3ed6f2b0caa547305ebb993fc9b0e246860af9451cd2ba75fca0743dae32af737f66235b5f9378c8af4587f7df5844ec85e5e5ea7e6f6ee1e168d2541d280a92ad83eb7497c2f60e029655eae5fb9e58f82e84dbf967e7836aa9015dc9bf2929b53aebfc9a64b4bd41ae03564790480a84d1ca9e7fc691673459e7cbe2c153fd96a09ff956c995d0a6adb945d67dd1dec9a14816eeb693227bab17926a1ac12e366fe32818a6651b00aa358f2a1873ad3e0c5d999ca75aa29293659e6c176a4f822e8ca23f11803771f751744fb9d071aec73b9f5b50c7f842609474029a69286a4c2f0f680426027e5a56246578220cecaff50a2e7e3c2fb7d91cc6be8074a43005dcfd4fc62cc284bca7eb1a35af63b595945e20fd320902750d33055b75428a8bf003ef96a80cc0d2f80fa6f6ba4d342f66387db79ec07fcf06ae17ed3857e6d2b7bd80970a3d732b9b0bb6b506b8336bd7a5cd7974f2510ff9a9ce80c2cbb0f8e94c5f1e0ac8a7958f223a2734d54464d13d18e37b9610245e2de51bf0328bc87a8017172bc26b6916763a848a70115c5bef97e31bda4b79747bc74b1934d2244a76de6c20bed92cd1967bcf5aedf62af06a93d5a4217c878c2b81f52e0206ab986adf0c89468ebff42aff8659c0cf9e110fbaddbfb045ee96acfd00c8fe3734688e0680f43066f08ec04839b4c28f373a9b0a06c3ad7044eff54591fc0ef788aa8faed574fe3fec5f562f067cd9a779f1c88bfd800a0d6c7574802598909ba7dc0aef3c057f5e8d666aae0ed3137f3f36bf9c1c81cc07a46b6d74fc6054cf440ebf1e9e4db38171c0b97c7b68fecc9f8b34b33e636487c78627498df2ff44d23894f622ae384440ec7ca5f63f5867e34ea8e21b2f15b2a45a1bd679046a972677a38e49b268ab4d4cad542ca95ca3899589f0af0c82986a2203f7b20d5a43c1ee367b1b7e3c495129036ccdf6e872aaa94b2e80b84d9fc9251a2ccf84c7ba178481302b0d9024653ca12d1ccc186e6a5fef31f44c655ff0e6ae506a41110879a958753cb9447db69b6b351685d3dff8c576b137f9cc25c2029209647305d5e23cadebdf3d9f56ebe0ba3f170009935f9a03457cae25dd7f16c59c1cbd7e3c678473072233d79a68455892370f10973e2884ce9341a89782c202e92d90f9c58db0c23d80a8b815eb28dc2d8e38aa445b3ce59b1b1440f2b4b54bf117f62ba65c2c65a5da8c266064cfda948335fee131dcecbf9c4e86f4689302fe54c9b70598d01845323ccb36195e4e644bcfad36c27532cb0ce44d71aedeb81ea066769d22082bdbe1d12ec9654829b632d0d4023435194f89a9bdc28b6f4ad91d1f9a88fb310d8cddf800503141468dd6c5661b0fa74c878c9ad0ff38a2b682dc831b47dbed6355b54dfc8e932c270e13fc2656faf30b3f5863fc6e6e34e5cfbc66be08e3d2f5ba8a1445a3eb011cd08a7da0708dbc00266951b05f21bc054bd70f15cb1406499424c00fd57bcb93dd2a07fc93c3e2db9a8ec97ee3d0add3ceddb2be717eb17821a427bc816028f5135f65af4ebe0122e15cbb9aaacffbcaf5eec6f39fe1acf74199c19cb2395b22d227c7996d5dcc4b4c173a957e7f75386f6bcb5afdcd839c66e2ba2a5012267b038c0eb601215839dc75215b28294fa8ff115b56b9d3aa85b3aa0a4ded64b4fc0aae92227822e6e5ea9a3c10571d9e9403d92c3eef7acd58c10b2576a4ba7cb1bd94f4b8c7e1bc790f93aba83914715dbf3d00c5597b66822b34fb637d6142b75eb02873718393f61c234b8b0b3f10520db24f6d7a33f498616ddbb934174f34e1df4e82307784847898bd3e563b3971e342a39716463c1a5d98d34196877f6fb7d859311d19c8afb0b594f89d7fc20f053ae69adea7c0185ece90f4b75a8907260fdce4d76f56674b41125e3d1d3087ffe412571721e120f369ec84ab5f7460a406b1</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 请输入密码.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
     </div>
 
     
@@ -368,7 +222,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/self-qa-infra/" rel="tag"># self, qa_infra</a>
+              <a href="/tags/self/" rel="tag"># self</a>
           </div>
 
         
@@ -439,7 +293,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E8%A6%81%E6%9C%8D%E5%8A%A1%E5%93%AA%E4%BA%9B%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.</span> <span class="nav-text">需要服务哪些对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%89%E7%AB%AF%E5%88%86%E7%B1%BB"><span class="nav-number">1.1.</span> <span class="nav-text">按端分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9F%E5%81%9A%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">传统做法:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E5%AE%9E%E8%B7%B5%E7%AE%80%E4%BB%8B"><span class="nav-number">1.3.</span> <span class="nav-text">部分实践简介:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%89%E6%9C%8D%E5%8A%A1%E5%88%86%E5%B1%82-%E4%BB%A5%E7%94%B5%E5%95%86%E7%B3%BB%E7%BB%9F%E4%B8%BA%E4%BE%8B"><span class="nav-number">1.4.</span> <span class="nav-text">按服务分层(以电商系统为例)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%B5%8B%E8%AF%95"><span class="nav-number">1.5.</span> <span class="nav-text">如何测试:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E5%92%8C%E5%B9%B3%E5%8F%B0%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">2.</span> <span class="nav-text">工具和平台的关系</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -458,7 +311,7 @@
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
