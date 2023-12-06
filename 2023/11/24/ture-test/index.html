@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ktrothschild-liifzeng.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="观点1： 观点2： 观点3：  看到脉脉上的一些人对测试的看法，我这边也提供一点我的看法，说的不正确的请斧正！ 业务测试手段为啥以点为主？ 1、互联网产品迭代太快，业务逻辑简单(toC类型的产品交互必须易上手)，点点点最直接 2、金融类产品业务逻辑更复杂，直接和交易相关，对正确性的要求高，人肉check有保障 3、偏硬件的产品，没有灰度可能，发版后修复成本高，交互路径必须有多轮用例覆盖测试 4、开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="互联网测试开发真的是&quot;点工&quot;吗？">
+<meta property="og:url" content="https://ktrothschild-liifzeng.github.io/2023/11/24/ture-test/index.html">
+<meta property="og:site_name" content="LiifZeng">
+<meta property="og:description" content="观点1： 观点2： 观点3：  看到脉脉上的一些人对测试的看法，我这边也提供一点我的看法，说的不正确的请斧正！ 业务测试手段为啥以点为主？ 1、互联网产品迭代太快，业务逻辑简单(toC类型的产品交互必须易上手)，点点点最直接 2、金融类产品业务逻辑更复杂，直接和交易相关，对正确性的要求高，人肉check有保障 3、偏硬件的产品，没有灰度可能，发版后修复成本高，交互路径必须有多轮用例覆盖测试 4、开">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ktrothschild-liifzeng.github.io/public/images/test-large-level-span.png">
+<meta property="og:image" content="https://ktrothschild-liifzeng.github.io/public/images/test-need-application.png">
+<meta property="og:image" content="https://ktrothschild-liifzeng.github.io/public/images/test-developer.png">
+<meta property="og:image" content="https://ktrothschild-liifzeng.github.io/public/images/case_mgr.gif">
+<meta property="og:image" content="https://ktrothschild-liifzeng.github.io/public/images/action_debug.gif">
+<meta property="og:image" content="https://ktrothschild-liifzeng.github.io/public/images/case_replay.gif">
+<meta property="og:image" content="https://ktrothschild-liifzeng.github.io/public/images/result_check.gif">
+<meta property="og:image" content="https://ktrothschild-liifzeng.github.io/public/images/flow_replay.gif">
+<meta property="og:image" content="https://ktrothschild-liifzeng.github.io/public/images/replay_result.gif">
+<meta property="article:published_time" content="2023-11-24T08:12:01.000Z">
+<meta property="article:modified_time" content="2023-12-06T17:20:26.024Z">
+<meta property="article:author" content="Liifzeng">
+<meta property="article:tag" content="test">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ktrothschild-liifzeng.github.io/public/images/test-large-level-span.png">
+
+<link rel="canonical" href="https://ktrothschild-liifzeng.github.io/2023/11/24/ture-test/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>互联网测试开发真的是"点工"吗？ | LiifZeng</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">LiifZeng</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ktrothschild-liifzeng.github.io/2023/11/24/ture-test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Liifzeng">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LiifZeng">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          互联网测试开发真的是"点工"吗？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-11-24 16:12:01" itemprop="dateCreated datePublished" datetime="2023-11-24T16:12:01+08:00">2023-11-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-12-07 01:20:26" itemprop="dateModified" datetime="2023-12-07T01:20:26+08:00">2023-12-07</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="观点1："><a href="#观点1：" class="headerlink" title="观点1："></a>观点1：</h3><p><img src="/../../public/images/test-large-level-span.png" alt="上限下限"></p>
+<h3 id="观点2："><a href="#观点2：" class="headerlink" title="观点2："></a>观点2：</h3><p><img src="/../../public/images/test-need-application.png" alt="业务测试"></p>
+<h3 id="观点3："><a href="#观点3：" class="headerlink" title="观点3："></a>观点3：</h3><p><img src="/../../public/images/test-developer.png" alt="测试开发"></p>
+<hr>
+<p>看到脉脉上的一些人对测试的看法，我这边也提供一点我的看法，说的不正确的请斧正！</p>
+<h3 id="业务测试手段为啥以点为主？"><a href="#业务测试手段为啥以点为主？" class="headerlink" title="业务测试手段为啥以点为主？"></a>业务测试手段为啥以点为主？</h3><ul>
+<li>1、互联网产品迭代太快，业务逻辑简单(toC类型的产品交互必须易上手)，点点点最直接</li>
+<li>2、金融类产品业务逻辑更复杂，直接和交易相关，对正确性的要求高，人肉check有保障</li>
+<li>3、偏硬件的产品，没有灰度可能，发版后修复成本高，交互路径必须有多轮用例覆盖测试</li>
+<li>4、开发为测试构建的基础设施少，特别是内部组件的测试支撑很少考虑，对外只是黑匣子</li>
+<li>5、业务测试人员的能力模型普遍是偏沟通推进，以写脚本为主，缺乏系统架构相关的经验</li>
+<li>6、测试开发提供的工具易用性差，大部分是玩具级别，稳定性经不住生产环境应用的考验</li>
+</ul>
+<h3 id="业务测试真的有手就行？"><a href="#业务测试真的有手就行？" class="headerlink" title="业务测试真的有手就行？"></a>业务测试真的有手就行？</h3><ul>
+<li>1、业务测试上手容易做好难，你可能需要有N只手，杂事非常多<ul>
+<li>流程管理：要跟需求的原型–&gt; 排期 –&gt; 用例编写(可能就是随机发散点点点) –&gt; bug修复验证 –&gt; 测试报告 –&gt; 漏测复盘(甩锅)</li>
+</ul>
+</li>
+<li>2、点很容易，点全很难<ul>
+<li>有些时候业务的操作组合非常多，很难覆盖全</li>
+<li>有些场景的构造需要造数据，需要额外写脚本去调用接口造数据</li>
+<li>回归是个大工程，一些主路径不点又怕出问题，点起来又耗时间和精力</li>
+<li>用例是个鸡肋，不管你是excel的还是xmind的，费力码了一堆文字，执行时都是点到哪算哪，随机发散先</li>
+</ul>
+</li>
+<li>3、当业务测试leader要八面玲珑<ul>
+<li>对内要分任务做排期，对外要出数据做统计，费心又费力</li>
+<li>出故障要能对外抗压，对内安抚，当然有些就是打嘴炮和甩锅</li>
+</ul>
+</li>
+</ul>
+<h3 id="测试开发做的工具真的那么差？"><a href="#测试开发做的工具真的那么差？" class="headerlink" title="测试开发做的工具真的那么差？"></a>测试开发做的工具真的那么差？</h3><ul>
+<li>1、很难一套工具适配所有业务，即使有也会又较高的接入成本，业务不愿意用是常态</li>
+<li>2、业务测试有自己的绩效考虑希望在工具层面有产出，至少是想包一层，或名义上共建</li>
+<li>3、工具依赖的技术底座不成熟<ul>
+<li>例如UI自动化<ul>
+<li>Android&#x2F;iOS手机天然有手机掉线&#x2F;卡死问题，有UI Hierarchy定位难的问题</li>
+<li>带webview的有xpath&#x2F; selector的定位因为div的动态变化，animation的影响无法定位问题</li>
+<li>selenium&#x2F; webdriver&#x2F; cypress等等基本就是玩具</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>4、产品化设计考虑不周，造成易用性差<ul>
+<li>例如接口测试平台<ul>
+<li>做一个在线版本的postman，接口类似swagger的方式管理，让用户在界面配接口case的各种参数和断言<ul>
+<li>看上去很理想，但配置界面参数比写脚本来说效率低很多</li>
+<li>灵活性差，如果想要上一个接口的返回的某个字段用于后续的接口的请求，即使支持，配置起来也不方便，还不如写脚本</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="测试开发到底是测试还是开发？"><a href="#测试开发到底是测试还是开发？" class="headerlink" title="测试开发到底是测试还是开发？"></a>测试开发到底是测试还是开发？</h3><ul>
+<li>人才过剩，以测开招进来，大部分是还是干点点点的活</li>
+<li>纯做工具平台的比例很少，这部分人建议最好做成全栈</li>
+</ul>
+<h3 id="卷测试开发到底是卷测试？"><a href="#卷测试开发到底是卷测试？" class="headerlink" title="卷测试开发到底是卷测试？"></a>卷测试开发到底是卷测试？</h3><ul>
+<li>人才过剩，没有答案，看机缘巧合</li>
+<li>八面玲珑，做业务测试</li>
+<li>学历没优势，后端卷不过，不想CRUD，愿意全栈，攻克工具难题，走测开</li>
+</ul>
+<hr>
+<h3 id="提供一个工具思路"><a href="#提供一个工具思路" class="headerlink" title="提供一个工具思路"></a>提供一个工具思路</h3><ul>
+<li>点一次就同时生成UI的用例和接口的用例，并且能自动运行，是不是就可以提高回归的效率？<ul>
+<li>以web为例<ul>
+<li>浏览器有个devtools能够抓取网页的全部流量，就知道待测系统的接口有哪些，以及这些接口请求时的参数</li>
+<li>浏览器有个devtools能拿到每个元素的xpath和selector，是不是就可以定位到要点的元素</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>基于devtools的实现原理做了一个玩具<ul>
+<li>用例管理<ul>
+<li><img src="/../../public/images/case_mgr.gif" alt="用例管理"></li>
+</ul>
+</li>
+<li>UI用例单步调试<ul>
+<li><img src="/../../public/images/action_debug.gif" alt="单步调试"></li>
+</ul>
+</li>
+<li>UI用例录制回放<ul>
+<li><img src="/../../public/images/case_replay.gif" alt="用例回放"></li>
+</ul>
+</li>
+<li>UI用例结果查看<ul>
+<li><img src="/../../public/images/result_check.gif" alt="结果查看"></li>
+</ul>
+</li>
+<li>接口用例自动生成回放<ul>
+<li><img src="/../../public/images/flow_replay.gif" alt="接口用例自动生成回放"></li>
+</ul>
+</li>
+<li>接口用例回放结果查看<ul>
+<li><img src="/../../public/images/replay_result.gif" alt="接口用例回放结果查看"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/test/" rel="tag"># test</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/11/23/how-to-devops/" rel="prev" title="研发效能提升随笔">
+      <i class="fa fa-chevron-left"></i> 研发效能提升随笔
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/11/25/hello-world/" rel="next" title="Hello World">
+      Hello World <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%82%E7%82%B91%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">观点1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%82%E7%82%B92%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">观点2：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%82%E7%82%B93%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">观点3：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%9A%E5%8A%A1%E6%B5%8B%E8%AF%95%E6%89%8B%E6%AE%B5%E4%B8%BA%E5%95%A5%E4%BB%A5%E7%82%B9%E4%B8%BA%E4%B8%BB%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">业务测试手段为啥以点为主？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%9A%E5%8A%A1%E6%B5%8B%E8%AF%95%E7%9C%9F%E7%9A%84%E6%9C%89%E6%89%8B%E5%B0%B1%E8%A1%8C%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">业务测试真的有手就行？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91%E5%81%9A%E7%9A%84%E5%B7%A5%E5%85%B7%E7%9C%9F%E7%9A%84%E9%82%A3%E4%B9%88%E5%B7%AE%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">测试开发做的工具真的那么差？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91%E5%88%B0%E5%BA%95%E6%98%AF%E6%B5%8B%E8%AF%95%E8%BF%98%E6%98%AF%E5%BC%80%E5%8F%91%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">测试开发到底是测试还是开发？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91%E5%88%B0%E5%BA%95%E6%98%AF%E5%8D%B7%E6%B5%8B%E8%AF%95%EF%BC%9F"><span class="nav-number">8.</span> <span class="nav-text">卷测试开发到底是卷测试？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E4%BE%9B%E4%B8%80%E4%B8%AA%E5%B7%A5%E5%85%B7%E6%80%9D%E8%B7%AF"><span class="nav-number">9.</span> <span class="nav-text">提供一个工具思路</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Liifzeng</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liifzeng</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

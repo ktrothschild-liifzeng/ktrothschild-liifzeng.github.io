@@ -289,6 +289,172 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ktrothschild-liifzeng.github.io/2023/11/24/ture-test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Liifzeng">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LiifZeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/11/24/ture-test/" class="post-title-link" itemprop="url">互联网测试开发真的是"点工"吗？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-11-24 16:12:01" itemprop="dateCreated datePublished" datetime="2023-11-24T16:12:01+08:00">2023-11-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-12-07 01:20:26" itemprop="dateModified" datetime="2023-12-07T01:20:26+08:00">2023-12-07</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="观点1："><a href="#观点1：" class="headerlink" title="观点1："></a>观点1：</h3><p><img src="/../../public/images/test-large-level-span.png" alt="上限下限"></p>
+<h3 id="观点2："><a href="#观点2：" class="headerlink" title="观点2："></a>观点2：</h3><p><img src="/../../public/images/test-need-application.png" alt="业务测试"></p>
+<h3 id="观点3："><a href="#观点3：" class="headerlink" title="观点3："></a>观点3：</h3><p><img src="/../../public/images/test-developer.png" alt="测试开发"></p>
+<hr>
+<p>看到脉脉上的一些人对测试的看法，我这边也提供一点我的看法，说的不正确的请斧正！</p>
+<h3 id="业务测试手段为啥以点为主？"><a href="#业务测试手段为啥以点为主？" class="headerlink" title="业务测试手段为啥以点为主？"></a>业务测试手段为啥以点为主？</h3><ul>
+<li>1、互联网产品迭代太快，业务逻辑简单(toC类型的产品交互必须易上手)，点点点最直接</li>
+<li>2、金融类产品业务逻辑更复杂，直接和交易相关，对正确性的要求高，人肉check有保障</li>
+<li>3、偏硬件的产品，没有灰度可能，发版后修复成本高，交互路径必须有多轮用例覆盖测试</li>
+<li>4、开发为测试构建的基础设施少，特别是内部组件的测试支撑很少考虑，对外只是黑匣子</li>
+<li>5、业务测试人员的能力模型普遍是偏沟通推进，以写脚本为主，缺乏系统架构相关的经验</li>
+<li>6、测试开发提供的工具易用性差，大部分是玩具级别，稳定性经不住生产环境应用的考验</li>
+</ul>
+<h3 id="业务测试真的有手就行？"><a href="#业务测试真的有手就行？" class="headerlink" title="业务测试真的有手就行？"></a>业务测试真的有手就行？</h3><ul>
+<li>1、业务测试上手容易做好难，你可能需要有N只手，杂事非常多<ul>
+<li>流程管理：要跟需求的原型–&gt; 排期 –&gt; 用例编写(可能就是随机发散点点点) –&gt; bug修复验证 –&gt; 测试报告 –&gt; 漏测复盘(甩锅)</li>
+</ul>
+</li>
+<li>2、点很容易，点全很难<ul>
+<li>有些时候业务的操作组合非常多，很难覆盖全</li>
+<li>有些场景的构造需要造数据，需要额外写脚本去调用接口造数据</li>
+<li>回归是个大工程，一些主路径不点又怕出问题，点起来又耗时间和精力</li>
+<li>用例是个鸡肋，不管你是excel的还是xmind的，费力码了一堆文字，执行时都是点到哪算哪，随机发散先</li>
+</ul>
+</li>
+<li>3、当业务测试leader要八面玲珑<ul>
+<li>对内要分任务做排期，对外要出数据做统计，费心又费力</li>
+<li>出故障要能对外抗压，对内安抚，当然有些就是打嘴炮和甩锅</li>
+</ul>
+</li>
+</ul>
+<h3 id="测试开发做的工具真的那么差？"><a href="#测试开发做的工具真的那么差？" class="headerlink" title="测试开发做的工具真的那么差？"></a>测试开发做的工具真的那么差？</h3><ul>
+<li>1、很难一套工具适配所有业务，即使有也会又较高的接入成本，业务不愿意用是常态</li>
+<li>2、业务测试有自己的绩效考虑希望在工具层面有产出，至少是想包一层，或名义上共建</li>
+<li>3、工具依赖的技术底座不成熟<ul>
+<li>例如UI自动化<ul>
+<li>Android&#x2F;iOS手机天然有手机掉线&#x2F;卡死问题，有UI Hierarchy定位难的问题</li>
+<li>带webview的有xpath&#x2F; selector的定位因为div的动态变化，animation的影响无法定位问题</li>
+<li>selenium&#x2F; webdriver&#x2F; cypress等等基本就是玩具</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>4、产品化设计考虑不周，造成易用性差<ul>
+<li>例如接口测试平台<ul>
+<li>做一个在线版本的postman，接口类似swagger的方式管理，让用户在界面配接口case的各种参数和断言<ul>
+<li>看上去很理想，但配置界面参数比写脚本来说效率低很多</li>
+<li>灵活性差，如果想要上一个接口的返回的某个字段用于后续的接口的请求，即使支持，配置起来也不方便，还不如写脚本</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="测试开发到底是测试还是开发？"><a href="#测试开发到底是测试还是开发？" class="headerlink" title="测试开发到底是测试还是开发？"></a>测试开发到底是测试还是开发？</h3><ul>
+<li>人才过剩，以测开招进来，大部分是还是干点点点的活</li>
+<li>纯做工具平台的比例很少，这部分人建议最好做成全栈</li>
+</ul>
+<h3 id="卷测试开发到底是卷测试？"><a href="#卷测试开发到底是卷测试？" class="headerlink" title="卷测试开发到底是卷测试？"></a>卷测试开发到底是卷测试？</h3><ul>
+<li>人才过剩，没有答案，看机缘巧合</li>
+<li>八面玲珑，做业务测试</li>
+<li>学历没优势，后端卷不过，不想CRUD，愿意全栈，攻克工具难题，走测开</li>
+</ul>
+<hr>
+<h3 id="提供一个工具思路"><a href="#提供一个工具思路" class="headerlink" title="提供一个工具思路"></a>提供一个工具思路</h3><ul>
+<li>点一次就同时生成UI的用例和接口的用例，并且能自动运行，是不是就可以提高回归的效率？<ul>
+<li>以web为例<ul>
+<li>浏览器有个devtools能够抓取网页的全部流量，就知道待测系统的接口有哪些，以及这些接口请求时的参数</li>
+<li>浏览器有个devtools能拿到每个元素的xpath和selector，是不是就可以定位到要点的元素</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>基于devtools的实现原理做了一个玩具<ul>
+<li>用例管理<ul>
+<li><img src="/../../public/images/case_mgr.gif" alt="用例管理"></li>
+</ul>
+</li>
+<li>UI用例单步调试<ul>
+<li><img src="/../../public/images/action_debug.gif" alt="单步调试"></li>
+</ul>
+</li>
+<li>UI用例录制回放<ul>
+<li><img src="/../../public/images/case_replay.gif" alt="用例回放"></li>
+</ul>
+</li>
+<li>UI用例结果查看<ul>
+<li><img src="/../../public/images/result_check.gif" alt="结果查看"></li>
+</ul>
+</li>
+<li>接口用例自动生成回放<ul>
+<li><img src="/../../public/images/flow_replay.gif" alt="接口用例自动生成回放"></li>
+</ul>
+</li>
+<li>接口用例回放结果查看<ul>
+<li><img src="/../../public/images/replay_result.gif" alt="接口用例回放结果查看"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://ktrothschild-liifzeng.github.io/2023/11/23/how-to-devops/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -529,7 +695,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
